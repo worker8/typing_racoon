@@ -1,33 +1,63 @@
 <template>
   <div id="show_text">
-    <span id="test">Note that there may be variations e.g., a company may contact you, or you
-    may submit via your college's career placement center. The screening may involve
-    a homework assignment to be done before or after the conversation. The on-site
-    interview may be conducted over a video chat session. Most on-sites are half a day,
-    but others may last the entire day. For anything involving interaction over a network,
-    be absolutely sure to work out logistics (a quiet place to talk with a landline rather
-    than a mobile, familiarity with the coding website and chat software, etc.) well in
-    advance.
+    <span id="test">
+
     </span>
   </div>
   <br>
-  <div>
+  <div class="word-wrap">
     Input Text:
-    {{ user_input }}
+    <br>
+    <span id="text-typed">{{ typedText }}</span><span id="text-remaining">{{ remainingText }}</span>
+    <br>
+    <textarea v-model="user_input" @keyup="onTextChange"/>
+    <br>
+    <button v-on:click="onClick">Clear Input</button>
   </div>
-  <br>
-  <input v-model="user_input"/>
 </template>
 
 <script>
 export default {
   name: "HomeComponent",
   data() {
-    return {user_input: ""}
+    return {
+      user_input: "",
+      typedText: "",
+      remainingText: "Mandela was only an infant at the time, and his father's loss of status forced his mother to move the family to Qunu, an even smaller village north of Mvezo. The village was nestled in a narrow grassy valley; there were no roads, only footpaths that linked the pastures where livestock grazed.\n" +
+          "      The family lived in huts and ate a local harvest of maize, sorghum, pumpkin and beans, which was all they could afford. Water came from springs and streams and cooking was done outdoors."
+    }
   },
+  methods: {
+    onClick() {
+      this.user_input = ""
+    },
+    onTextChange() {
+      if (this.remainingText[0] === this.user_input[this.user_input.length - 1]) {
+        this.typedText += this.remainingText[0]
+        this.remainingText = this.remainingText.substring(1)
+      }
+      console.log("changed")
+    }
+  },
+  beforeMount() {
+
+  }
 }
 </script>
 
 <style scoped>
+.word-wrap {
+  width: 1000px;
+  word-wrap: break-word;
+}
 
+#text-typed {
+  color: blue;
+  text-underline: blue;
+}
+
+#text-remaining {
+  color: #2c3e50;
+  text-underline: none;
+}
 </style>
