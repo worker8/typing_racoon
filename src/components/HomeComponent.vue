@@ -28,9 +28,9 @@ export default {
       typedText: "",
       remainingText: "",
       fullText: "Mandela was only an infant at the time,"
-      // + " and his father's loss of status forced his mother to move the family to Qunu, an even smaller village north of Mvezo."
-      // + "The village was nestled in a narrow grassy valley; there were no roads, only footpaths that linked the pastures where livestock grazed. "
-      // + "The family lived in huts and ate a local harvest of maize, sorghum, pumpkin and beans, which was all they could afford. Water came from springs and streams and cooking was done outdoors."
+          + " and his father's loss of status forced his mother to move the family to Qunu, an even smaller village north of Mvezo."
+          + " The village was nestled in a narrow grassy valley; there were no roads, only footpaths that linked the pastures where livestock grazed."
+          + " The family lived in huts and ate a local harvest of maize, sorghum, pumpkin and beans, which was all they could afford. Water came from springs and streams and cooking was done outdoors."
     }
   },
   methods: {
@@ -80,9 +80,6 @@ export default {
         this.cRed = tempRed
         this.remainingText = whatsLeft.substring(this.cGreen.length + this.cRed.length)
       }
-      console.log(`cGreen = ${this.cGreen}`)
-      console.log(`cRed = ${this.cRed}`)
-      console.log(`remainingText = ${this.remainingText}`)
     }
   },
   beforeMount() {
