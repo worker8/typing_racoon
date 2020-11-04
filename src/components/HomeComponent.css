@@ -1,0 +1,28 @@
+.word-wrap {
+    word-wrap: break-word;
+}
+
+textarea {
+    margin-top: 30px;
+    width: 500px;
+    height: 100px;
+}
+
+#text-remaining {
+    color: #2c3e50;
+    text-underline: none;
+}
+
+#permanent_green {
+    color: darkslateblue;
+}
+
+#current_green {
+    color: darkslateblue;
+    text-decoration-line: underline;
+}
+
+#current_red {
+    background: cadetblue;
+    text-decoration-line: underline;
+}
