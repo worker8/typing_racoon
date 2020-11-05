@@ -14,11 +14,11 @@ textarea {
 }
 
 #permanent_green {
-    color: darkslateblue;
+    color: #27ae60;
 }
 
 #current_green {
-    color: darkslateblue;
+    color: #27ae60;
     text-decoration-line: underline;
 }
 
