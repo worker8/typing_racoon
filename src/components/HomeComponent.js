@@ -19,23 +19,26 @@ export default {
             this.user_input = ""
         },
         onTextChange() {
-            let whatsLeft = this.fullText.substring(this.pGreen.length)
-            if (this.user_input.charAt(this.user_input.length - 1) === ' ' || whatsLeft.length === this.user_input.length) {
+            let remainingText = this.fullText.substring(this.pGreen.length)
+            let userInput = this.user_input
+            if (isEndWithWhiteSpace(userInput) ||
+                /* is this the last word */
+                remainingText.length === this.user_input.length) {
                 // find the index of the whitespace
                 let word = ""
-                for (let i = 0; i < whatsLeft.length; i++) {
-                    if (whatsLeft[i] === ' ') {
+                for (let i = 0; i < remainingText.length; i++) {
+                    if (remainingText[i] === ' ') {
                         break
                     } else {
-                        word += whatsLeft[i]
+                        word += remainingText[i]
                     }
                 }
-                if (whatsLeft.length !== this.user_input.length) {
+                if (remainingText.length !== this.user_input.length) {
                     word += ' '
                 }
                 if (this.user_input === word) {
-                    this.pGreen += whatsLeft.substring(0, this.user_input.length)
-                    this.remainingText = whatsLeft.substring(this.user_input.length)
+                    this.pGreen += remainingText.substring(0, this.user_input.length)
+                    this.remainingText = remainingText.substring(this.user_input.length)
                     // flush the user input textarea, and other highlights
                     this.user_input = ""
                     this.cGreen = ""
@@ -43,27 +46,38 @@ export default {
                     return
                 }
             } else {// if it's the last word
-                if (whatsLeft.length === this.user_input.length) {
+                if (remainingText.length === this.user_input.length) {
                     // TODO: handle
                 }
-                console.log(`whatsLeft = ${whatsLeft}`)
+                console.log(`whatsLeft = ${remainingText}`)
                 let tempGreen = ""
                 let tempRed = ""
                 for (let i = 0; i < this.user_input.length; i++) {
-                    if (this.user_input[i] === whatsLeft[i]) {
+                    if (this.user_input[i] === remainingText[i]) {
                         tempGreen += this.user_input[i]
                     } else {
-                        tempRed = whatsLeft.substring(i, this.user_input.length)
+                        tempRed = remainingText.substring(i, this.user_input.length)
                         break
                     }
                 }
                 this.cGreen = tempGreen
                 this.cRed = tempRed
-                this.remainingText = whatsLeft.substring(this.cGreen.length + this.cRed.length)
+                this.remainingText = remainingText.substring(this.cGreen.length + this.cRed.length)
             }
         }
     },
     beforeMount() {
         this.remainingText = this.fullText;
     }
+}
+
+function isEndWithWhiteSpace(s) {
+    if (s != null && s.length > 0 && s.charAt(s.length - 1) === ' ') {
+        return true
+    }
+    return false
+}
+
+function indexOfWhiteSpace(s) {
+
 }
