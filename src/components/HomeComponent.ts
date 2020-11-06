@@ -1,4 +1,6 @@
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
     name: "HomeComponent",
     data() {
         return {
@@ -67,8 +69,9 @@ export default {
     beforeMount() {
         this.remainingText = this.fullText;
     }
-}
 
-function hasWhiteSpace(s) {
+})
+
+function hasWhiteSpace(s: string) {
     return !!(s != null && s.length > 0 && s.includes(' '));
 }

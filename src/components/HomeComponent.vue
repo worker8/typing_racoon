@@ -16,5 +16,6 @@
   </div>
 </template>
 
-<script src="./HomeComponent.js" />
+
+<script src="./HomeComponent.ts" />
 <style src="./HomeComponent.css" />
