@@ -6,6 +6,9 @@
   </div>
   <br>
   <div class="word-wrap">
+    <span>time elapsed: {{ seconds }}</span>
+    <br>
+    <span>wpm: </span><span id="wpm">{{ wpm }}</span>
     <br>
     <span id="permanent_green">{{ pGreen }}</span><span id="current_green">{{ cGreen }}</span>
     <span id="current_red">{{ cRed }}</span><span id="text-remaining">{{ remainingText }}</span>
@@ -17,5 +20,5 @@
 </template>
 
 
-<script src="./HomeComponent.ts" />
-<style src="./HomeComponent.css" />
+<script src="./HomeComponent.ts"/>
+<style src="./HomeComponent.css"/>

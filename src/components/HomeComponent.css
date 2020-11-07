@@ -1,5 +1,7 @@
 .word-wrap {
     word-wrap: break-word;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 textarea {
@@ -25,4 +27,9 @@ textarea {
 #current_red {
     background: cadetblue;
     text-decoration-line: underline;
+}
+
+#wpm {
+    font-size: x-large;
+    font-weight: bold;
 }

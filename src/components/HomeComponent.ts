@@ -1,9 +1,14 @@
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 
 export default defineComponent({
     name: "HomeComponent",
     data() {
         return {
+            seconds: 0,
+            wpm: 0,
+            wordCount: 0,
+            startFlags: false,
+            endFlag: false,
             userInput: "",
             pGreen: "",
             cGreen: "",
@@ -21,6 +26,7 @@ export default defineComponent({
             this.userInput = ""
         },
         onTextChange() {
+            this.startFlags = true
             let remainingText = this.fullText.substring(this.pGreen.length)
             let userInput = this.userInput
             // 1. if userInput ends with a whitespace, check if it matches
@@ -37,10 +43,15 @@ export default defineComponent({
                 let userInputList = userInput.split(/[ ]+/)
                 let remainingTextList = remainingText.split(/[ ]+/)
                 if (userInputList.length > 0 && remainingTextList.length > 0) {
-                    if (userInputList[0] === remainingTextList[0]) {
+                    if (userInputList[0] === remainingTextList[0]) { // 1 correct word typed
                         this.pGreen += remainingText.substring(0, userInputList[0].length + shift)
                         newRemainingText = remainingText.substring(userInputList[0].length + shift)
                         newUserInput = userInput.substring(userInputList[0].length + shift)
+                        if (newRemainingText.length == 0) {
+                            this.endFlag = true
+                        }
+                        this.wordCount += 1
+                        // check on if remaining text has anything left
                     }
                 }
             }
@@ -68,10 +79,17 @@ export default defineComponent({
     },
     beforeMount() {
         this.remainingText = this.fullText;
+        let intervalId = setInterval(() => {
+            if (this.startFlags) {
+                this.seconds = this.seconds + 1;
+                this.wpm = Math.round(this.wordCount * (60 / this.seconds))
+            }
+            if (this.endFlag) clearInterval(intervalId)
+        }, 1000)
     }
 
 })
 
 function hasWhiteSpace(s: string) {
-    return !!(s != null && s.length > 0 && s.includes(' '));
+    return (s != null && s.length > 0 && s.includes(' '));
 }
