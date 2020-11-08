@@ -22,9 +22,6 @@ export default defineComponent({
         }
     },
     methods: {
-        onClick() {
-            this.userInput = ""
-        },
         onTextChange() {
             this.startFlags = true
             let remainingText = this.fullText.substring(this.pGreen.length)
