@@ -1,24 +1,9 @@
 # typing_racoon
 
-## Project setup
-```
-yarn install
-```
+This is a small project for playing with typing speed test. It's written in Typescript and Vue.js
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Quick demo
+https://typing-racoon.onrender.com/
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Setup
+run `yarn` then `yarn serve`
