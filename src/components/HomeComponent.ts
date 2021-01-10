@@ -75,7 +75,6 @@ export default defineComponent({
         }
     },
     beforeMount() {
-        this.remainingText = this.fullText;
         let intervalId = setInterval(() => {
             if (this.startFlags) {
                 this.seconds = this.seconds + 1;
@@ -88,7 +87,10 @@ export default defineComponent({
         axios.get("http://localhost:4500/").then((response) => {
             console.log(response.status)
             console.log(response.data)
+            this.fullText = response.data.quote
+            this.remainingText = this.fullText;
         });
+        this.remainingText = this.fullText;
     }
 
 })
