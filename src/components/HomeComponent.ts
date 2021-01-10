@@ -1,5 +1,5 @@
-import {defineComponent} from 'vue'
-
+import { defineComponent } from 'vue'
+import axios from 'axios';
 export default defineComponent({
     name: "HomeComponent",
     data() {
@@ -83,6 +83,12 @@ export default defineComponent({
             }
             if (this.endFlag) clearInterval(intervalId)
         }, 1000)
+        axios.defaults.headers.get["Access-Control-Allow-Origin"] = '*';
+        axios.defaults.headers.get["Content-Type"] = "application/json";
+        axios.get("http://localhost:4500/").then((response) => {
+            console.log(response.status)
+            console.log(response.data)
+        });
     }
 
 })
