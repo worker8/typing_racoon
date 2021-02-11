@@ -1,5 +1,7 @@
 import { defineComponent } from 'vue'
 import axios from 'axios';
+import $ from 'jquery';
+
 export default defineComponent({
     name: "HomeComponent",
     data() {
@@ -37,11 +39,13 @@ export default defineComponent({
             if (containWhiteSpace ||
                 /* is this the last word */
                 remainingText.length === this.userInput.length) {
-                let userInputList = userInput.split(/[ ]+/)
-                let remainingTextList = remainingText.split(/[ ]+/)
+                let userInputList = userInput.split(" ")
+                // let remainingTextList = remainingText.split(/[ ]+/)
+                let remainingTextList = remainingText.split(" ")
                 if (userInputList.length > 0 && remainingTextList.length > 0) {
                     if (userInputList[0] === remainingTextList[0]) { // 1 correct word typed
                         this.pGreen += remainingText.substring(0, userInputList[0].length + shift)
+                        $("#permanent_green").text(this.pGreen)
                         newRemainingText = remainingText.substring(userInputList[0].length + shift)
                         newUserInput = userInput.substring(userInputList[0].length + shift)
                         if (newRemainingText.length == 0) {
@@ -69,9 +73,13 @@ export default defineComponent({
                 }
             }
             this.userInput = newUserInput
+
             this.cGreen = tempGreen
             this.cRed = tempRed
             this.remainingText = newRemainingText.substring(this.cGreen.length + this.cRed.length)
+            $("#current_green").text(this.cGreen)
+            $("#current_red").text(this.cRed)
+            $("#text-remaining").text(this.remainingText)
         }
     },
     beforeMount() {
@@ -87,10 +95,13 @@ export default defineComponent({
         axios.get("http://localhost:4500/").then((response) => {
             console.log(response.status)
             console.log(response.data)
+            // this.fullText = "My mother had to abandon her quest, but managed to extract from the restriction itself a further delicate thought, like good poets whom the tyranny of rhyme forces into the discovery of their finest lines."
             this.fullText = response.data.quote
             this.remainingText = this.fullText;
+            $("#text-remaining").text(this.remainingText)
         });
         this.remainingText = this.fullText;
+        $("#text-remaining").text(this.remainingText)
     }
 
 })
