@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 import axios from 'axios';
 import $ from 'jquery';
 
@@ -8,7 +8,8 @@ export default defineComponent({
         return {
             seconds: 0,
             wpm: 0,
-            wordCount: 0,
+            charCount: 0,
+            wordCount: 0, /* TODO: this can be removed... */
             startFlags: false,
             endFlag: false,
             userInput: "",
@@ -52,6 +53,7 @@ export default defineComponent({
                             this.endFlag = true
                         }
                         this.wordCount += 1
+                        this.charCount += userInputList[0].length
                         // check on if remaining text has anything left
                     }
                 }
@@ -86,7 +88,7 @@ export default defineComponent({
         let intervalId = setInterval(() => {
             if (this.startFlags) {
                 this.seconds = this.seconds + 1;
-                this.wpm = Math.round(this.wordCount * (60 / this.seconds))
+                this.wpm = Math.round((this.charCount / 5) * (60 / this.seconds))
             }
             if (this.endFlag) clearInterval(intervalId)
         }, 1000)
