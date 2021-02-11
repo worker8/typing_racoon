@@ -21,7 +21,7 @@ export default defineComponent({
             fullText: "Mandela was only an infant at the time,"
                 + " and his father's loss of status forced his mother to move the family to Qunu, an even smaller village north of Mvezo."
                 + " The village was nestled in a narrow grassy valley; there were no roads, only footpaths that linked the pastures where livestock grazed."
-                + " The family lived in huts and ate a local harvest of maize, sorghum, pumpkin and beans, which was all they could afford. Water came from springs and streams and cooking was done outdoors."
+                + " The family lived in huts and ate a local harvest of maize, sorghum, pumpkin and beans, which was all they could afford."
         }
     },
     methods: {
@@ -94,7 +94,8 @@ export default defineComponent({
         }, 1000)
         axios.defaults.headers.get["Access-Control-Allow-Origin"] = '*';
         axios.defaults.headers.get["Content-Type"] = "application/json";
-        axios.get("http://localhost:4500/").then((response) => {
+        // axios.get("http://localhost:4500/").then((response) => {
+            axios.get("https://typing-racoon-backend.herokuapp.com/").then((response) => {
             console.log(response.status)
             console.log(response.data)
             // this.fullText = "My mother had to abandon her quest, but managed to extract from the restriction itself a further delicate thought, like good poets whom the tyranny of rhyme forces into the discovery of their finest lines."
