@@ -53,7 +53,7 @@ export default defineComponent({
                             this.endFlag = true
                         }
                         this.wordCount += 1
-                        this.charCount += userInputList[0].length
+                        this.charCount += userInputList[0].length + 1 // +1 is for the whitespace
                         // check on if remaining text has anything left
                     }
                 }
