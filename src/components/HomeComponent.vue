@@ -13,13 +13,14 @@
     <br>
     <div class="flex flex-col">
       <div id="text_area">
-        <span id="permanent_green"/>
-        <span id="current_green"/>
-        <span id="cursor"/>
-        <span id="current_red"/><span id="text-remaining"/>
+        <span id="permanent_green">{{pGreen}}</span>
+        <span id="current_green">{{cGreen}}</span>
+        <span id="cursor"></span>
+        <span id="current_red">{{cRed}}</span>
+        <span id="text-remaining">{{remainingText}}</span>
       </div>
       <br>
-      <textarea class="border-2" v-model="userInput" @keyup="onTextChange" autofocus/>
+      <textarea id="user_input" class="border-2" v-model="userInput" @input="onTextChange" autofocus/>
       <br>
     </div>
   </div>
